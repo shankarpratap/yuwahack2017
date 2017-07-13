@@ -1,0 +1,8 @@
+# Build generated files
+/**/objd/**
+/**/obj/**
+/**/bin/**
+/**/packages/**
+/**/.vs/**
+*.dbmdl
+*.jfm
