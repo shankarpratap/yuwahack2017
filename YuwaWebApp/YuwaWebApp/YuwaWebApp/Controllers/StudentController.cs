@@ -14,7 +14,7 @@ namespace YuwaWebApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult AddNewStudent(StudentModel student)
+        public ActionResult AddNewStudent(StudentDetail student)
         {
             return RedirectToAction("Index", "Home");
         }
