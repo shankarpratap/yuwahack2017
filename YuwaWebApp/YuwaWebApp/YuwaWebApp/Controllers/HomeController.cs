@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 using System.Web.Mvc;
+using YuwaWebApp.SqlLibrary;
+using YuwaWebApp.Models;
 
 namespace YuwaWebApp.Controllers
 {
@@ -25,6 +28,24 @@ namespace YuwaWebApp.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Students()
+        {
+            TargetDB db = new TargetDB("Yuwa", "anly4s85vg.database.windows.net", "Yuwa", "Welcome_1234");
+            List<DataTable> result = db.ExecuteQuery("Select firstname, Gender from StudentDetails");
+            string studentList = "";
+
+            List<StudentDetail> students = new List<StudentDetail>();
+
+            foreach (DataRow row in result[0].Rows)
+            {
+                students.Add(new StudentDetail() { FirstName = row["firstname"].ToString(), Gender = row["Gender"].ToString() });
+                studentList += Environment.NewLine + row["firstname"].ToString();
+            }
+            ViewBag.Message = "studentList";
+
+            return View(students);
         }
     }
 }

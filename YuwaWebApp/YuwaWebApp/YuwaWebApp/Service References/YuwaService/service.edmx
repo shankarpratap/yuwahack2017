@@ -1,0 +1,141 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="3.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="yuwamt" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="StudentDetail">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="O365ID" Type="Edm.Guid" />
+        <Property Name="Birthdate" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="Gender" Type="Edm.String" />
+        <Property Name="Address" Type="Edm.String" />
+        <Property Name="Student_Pic" Type="Edm.String" />
+        <Property Name="Blood_Group" Type="Edm.String" />
+        <Property Name="Village" Type="Edm.String" />
+        <Property Name="Phone" Type="Edm.Int32" />
+        <Property Name="DOJ_Yuwa" Type="Edm.DateTime" />
+        <Property Name="Familyid" Type="Edm.Int32" />
+        <Property Name="firstname" Type="Edm.String" />
+        <Property Name="lastname" Type="Edm.String" />
+        <Property Name="middlename" Type="Edm.String" />
+        <Property Name="is_student" Type="Edm.Boolean" />
+        <Property Name="is_coach" Type="Edm.Boolean" />
+        <NavigationProperty Name="FamilyDetail" Relationship="yuwamt.yuwamt_StudentDetail_FamilyDetail_yuwamt_FamilyDetail_FamilyDetailPartner" ToRole="FamilyDetail" FromRole="FamilyDetailPartner" />
+        <NavigationProperty Name="Siblings" Relationship="yuwamt.yuwamt_StudentDetail_Siblings_yuwamt_Sibling_SiblingsPartner" ToRole="Siblings" FromRole="SiblingsPartner" />
+        <NavigationProperty Name="AttendanceRecords" Relationship="yuwamt.yuwamt_StudentDetail_AttendanceRecords_yuwamt_AttendanceRecord_AttendanceRecordsPartner" ToRole="AttendanceRecords" FromRole="AttendanceRecordsPartner" />
+      </EntityType>
+      <EntityType Name="FamilyDetail">
+        <Property Name="Familyid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="FatherName" Type="Edm.String" />
+        <Property Name="MotherName" Type="Edm.String" />
+        <Property Name="Guardian_Name" Type="Edm.String" />
+        <Property Name="Father_Profession" Type="Edm.String" />
+        <Property Name="Mother_Profession" Type="Edm.String" />
+        <Property Name="No_of_Working_Days_Father" Type="Edm.Int32" />
+        <Property Name="No_Of_Working_Days_Mother" Type="Edm.Int32" />
+        <Property Name="Father_Working_Days" Type="Edm.String" />
+        <Property Name="Mother_WOrking_Days" Type="Edm.String" />
+        <Property Name="Family_Income" Type="Edm.Int32" />
+        <Property Name="Total_Children" Type="Edm.Int32" />
+        <NavigationProperty Name="Siblings" Relationship="yuwamt.yuwamt_FamilyDetail_Siblings_yuwamt_Sibling_SiblingsPartner" ToRole="Siblings" FromRole="SiblingsPartner" />
+        <NavigationProperty Name="StudentDetails" Relationship="yuwamt.yuwamt_FamilyDetail_StudentDetails_yuwamt_StudentDetail_StudentDetailsPartner" ToRole="StudentDetails" FromRole="StudentDetailsPartner" />
+      </EntityType>
+      <EntityType Name="Sibling">
+        <Key>
+          <PropertyRef Name="siblingid" />
+        </Key>
+        <Property Name="Familyid" Type="Edm.Int32" />
+        <Property Name="studentid" Type="Edm.Int32" />
+        <Property Name="siblingid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="Marital_Status" Type="Edm.String" />
+        <Property Name="Profession" Type="Edm.String" />
+        <Property Name="DaysWOrdedPerMonth" Type="Edm.Int32" />
+        <Property Name="Gender" Type="Edm.String" />
+        <NavigationProperty Name="FamilyDetail" Relationship="yuwamt.yuwamt_Sibling_FamilyDetail_yuwamt_FamilyDetail_FamilyDetailPartner" ToRole="FamilyDetail" FromRole="FamilyDetailPartner" />
+        <NavigationProperty Name="StudentDetail" Relationship="yuwamt.yuwamt_Sibling_StudentDetail_yuwamt_StudentDetail_StudentDetailPartner" ToRole="StudentDetail" FromRole="StudentDetailPartner" />
+      </EntityType>
+      <EntityType Name="AttendanceRecord">
+        <Property Name="Studentid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="TimeStamp" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="Session_Name" Type="Edm.String" />
+        <Property Name="Answers" Type="Edm.String" />
+        <Property Name="Surveyid" Type="Edm.Int32" />
+        <NavigationProperty Name="StudentDetail" Relationship="yuwamt.yuwamt_AttendanceRecord_StudentDetail_yuwamt_StudentDetail_StudentDetailPartner" ToRole="StudentDetail" FromRole="StudentDetailPartner" />
+      </EntityType>
+      <Association Name="yuwamt_StudentDetail_FamilyDetail_yuwamt_FamilyDetail_FamilyDetailPartner">
+        <End Type="yuwamt.FamilyDetail" Role="FamilyDetail" Multiplicity="0..1" />
+        <End Type="yuwamt.StudentDetail" Role="FamilyDetailPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="yuwamt_StudentDetail_Siblings_yuwamt_Sibling_SiblingsPartner">
+        <End Type="yuwamt.Sibling" Role="Siblings" Multiplicity="*" />
+        <End Type="yuwamt.StudentDetail" Role="SiblingsPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="yuwamt_StudentDetail_AttendanceRecords_yuwamt_AttendanceRecord_AttendanceRecordsPartner">
+        <End Type="yuwamt.AttendanceRecord" Role="AttendanceRecords" Multiplicity="*" />
+        <End Type="yuwamt.StudentDetail" Role="AttendanceRecordsPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="yuwamt_FamilyDetail_Siblings_yuwamt_Sibling_SiblingsPartner">
+        <End Type="yuwamt.Sibling" Role="Siblings" Multiplicity="*" />
+        <End Type="yuwamt.FamilyDetail" Role="SiblingsPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="yuwamt_FamilyDetail_StudentDetails_yuwamt_StudentDetail_StudentDetailsPartner">
+        <End Type="yuwamt.StudentDetail" Role="StudentDetails" Multiplicity="*" />
+        <End Type="yuwamt.FamilyDetail" Role="StudentDetailsPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="yuwamt_Sibling_FamilyDetail_yuwamt_FamilyDetail_FamilyDetailPartner">
+        <End Type="yuwamt.FamilyDetail" Role="FamilyDetail" Multiplicity="0..1" />
+        <End Type="yuwamt.Sibling" Role="FamilyDetailPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="yuwamt_Sibling_StudentDetail_yuwamt_StudentDetail_StudentDetailPartner">
+        <End Type="yuwamt.StudentDetail" Role="StudentDetail" Multiplicity="0..1" />
+        <End Type="yuwamt.Sibling" Role="StudentDetailPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="yuwamt_AttendanceRecord_StudentDetail_yuwamt_StudentDetail_StudentDetailPartner">
+        <End Type="yuwamt.StudentDetail" Role="StudentDetail" Multiplicity="0..1" />
+        <End Type="yuwamt.AttendanceRecord" Role="StudentDetailPartner" Multiplicity="0..1" />
+      </Association>
+    </Schema>
+    <Schema Namespace="Default" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityContainer Name="Container" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="StudentDetails" EntityType="yuwamt.StudentDetail" />
+        <EntitySet Name="FamilyDetails" EntityType="yuwamt.FamilyDetail" />
+        <EntitySet Name="Siblings" EntityType="yuwamt.Sibling" />
+        <EntitySet Name="AttendanceRecords" EntityType="yuwamt.AttendanceRecord" />
+        <AssociationSet Name="yuwamt_StudentDetail_FamilyDetail_yuwamt_FamilyDetail_FamilyDetailPartnerSet" Association="yuwamt.yuwamt_StudentDetail_FamilyDetail_yuwamt_FamilyDetail_FamilyDetailPartner">
+          <End Role="FamilyDetailPartner" EntitySet="StudentDetails" />
+          <End Role="FamilyDetail" EntitySet="FamilyDetails" />
+        </AssociationSet>
+        <AssociationSet Name="yuwamt_StudentDetail_Siblings_yuwamt_Sibling_SiblingsPartnerSet" Association="yuwamt.yuwamt_StudentDetail_Siblings_yuwamt_Sibling_SiblingsPartner">
+          <End Role="SiblingsPartner" EntitySet="StudentDetails" />
+          <End Role="Siblings" EntitySet="Siblings" />
+        </AssociationSet>
+        <AssociationSet Name="yuwamt_StudentDetail_AttendanceRecords_yuwamt_AttendanceRecord_AttendanceRecordsPartnerSet" Association="yuwamt.yuwamt_StudentDetail_AttendanceRecords_yuwamt_AttendanceRecord_AttendanceRecordsPartner">
+          <End Role="AttendanceRecordsPartner" EntitySet="StudentDetails" />
+          <End Role="AttendanceRecords" EntitySet="AttendanceRecords" />
+        </AssociationSet>
+        <AssociationSet Name="yuwamt_FamilyDetail_Siblings_yuwamt_Sibling_SiblingsPartnerSet" Association="yuwamt.yuwamt_FamilyDetail_Siblings_yuwamt_Sibling_SiblingsPartner">
+          <End Role="SiblingsPartner" EntitySet="FamilyDetails" />
+          <End Role="Siblings" EntitySet="Siblings" />
+        </AssociationSet>
+        <AssociationSet Name="yuwamt_FamilyDetail_StudentDetails_yuwamt_StudentDetail_StudentDetailsPartnerSet" Association="yuwamt.yuwamt_FamilyDetail_StudentDetails_yuwamt_StudentDetail_StudentDetailsPartner">
+          <End Role="StudentDetailsPartner" EntitySet="FamilyDetails" />
+          <End Role="StudentDetails" EntitySet="StudentDetails" />
+        </AssociationSet>
+        <AssociationSet Name="yuwamt_Sibling_FamilyDetail_yuwamt_FamilyDetail_FamilyDetailPartnerSet" Association="yuwamt.yuwamt_Sibling_FamilyDetail_yuwamt_FamilyDetail_FamilyDetailPartner">
+          <End Role="FamilyDetailPartner" EntitySet="Siblings" />
+          <End Role="FamilyDetail" EntitySet="FamilyDetails" />
+        </AssociationSet>
+        <AssociationSet Name="yuwamt_Sibling_StudentDetail_yuwamt_StudentDetail_StudentDetailPartnerSet" Association="yuwamt.yuwamt_Sibling_StudentDetail_yuwamt_StudentDetail_StudentDetailPartner">
+          <End Role="StudentDetailPartner" EntitySet="Siblings" />
+          <End Role="StudentDetail" EntitySet="StudentDetails" />
+        </AssociationSet>
+        <AssociationSet Name="yuwamt_AttendanceRecord_StudentDetail_yuwamt_StudentDetail_StudentDetailPartnerSet" Association="yuwamt.yuwamt_AttendanceRecord_StudentDetail_yuwamt_StudentDetail_StudentDetailPartner">
+          <End Role="StudentDetailPartner" EntitySet="AttendanceRecords" />
+          <End Role="StudentDetail" EntitySet="StudentDetails" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
