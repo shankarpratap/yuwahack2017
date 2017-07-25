@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2dcc5b891ed54d768e8544c0a919f09d" Name="Diagram1">
+        <EntityTypeShape EntityType="YuwaModel.ClassDetail" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.CoachDetail" Width="1.5" PointX="7.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.FamilyDetail" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.Sibling" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.StudentDetail" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.SurveyList" Width="1.5" PointX="2.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.sysdiagram" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.TeamDetail" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.ValueRankingForm" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.Yw_features" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.AttendanceRecord" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.CoachAttendance" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.ListOfHoliday" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YuwaModel.SurveyQuestioniarre" Width="1.5" PointX="5" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="YuwaModel.FK_CoachAttendance_CoachDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="YuwaModel.FK_sibling_Family_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="YuwaModel.FK_student_details_Family_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="YuwaModel.FK_sibling_student_details" ManuallyRouted="false" />
+        <AssociationConnector Association="YuwaModel.FK_Attendence_Record_student_details" ManuallyRouted="false" />
+        <AssociationConnector Association="YuwaModel.FK_Survey_Questioniar_Survey_List" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

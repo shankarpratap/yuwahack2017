@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="YuwaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Yuwa.dbo.AttendanceRecord' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AttendanceRecord">
+          <Key>
+            <PropertyRef Name="Studentid" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="Session_Name" />
+          </Key>
+          <Property Name="Studentid" Type="int" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="Session_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Answers" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Surveyid" Type="int" />
+        </EntityType>
+        <EntityType Name="ClassDetails">
+          <Key>
+            <PropertyRef Name="Classid" />
+          </Key>
+          <Property Name="Classid" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Classdetails" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Yuwa.dbo.CoachAttendance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CoachAttendance">
+          <Key>
+            <PropertyRef Name="Coachid" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="CoachedTeam" />
+          </Key>
+          <Property Name="Coachid" Type="int" Nullable="false" />
+          <Property Name="TimeStamp" Type="date" Nullable="false" />
+          <Property Name="CoachedTeam" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CoachDetails">
+          <Key>
+            <PropertyRef Name="Coachid" />
+          </Key>
+          <Property Name="Coachid" Type="int" Nullable="false" />
+          <Property Name="CoachName" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="FamilyDetails">
+          <Key>
+            <PropertyRef Name="Familyid" />
+          </Key>
+          <Property Name="Familyid" Type="int" Nullable="false" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Guardian_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Father_Profession" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mother_Profession" Type="nvarchar" MaxLength="50" />
+          <Property Name="No_of_Working_Days_Father" Type="int" />
+          <Property Name="No_Of_Working_Days_Mother" Type="int" />
+          <Property Name="Father_Working_Days" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mother_WOrking_Days" Type="nvarchar" MaxLength="50" />
+          <Property Name="Family_Income" Type="int" />
+          <Property Name="Total_Children" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Yuwa.dbo.ListOfHolidays' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ListOfHolidays">
+          <Key>
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="is_Attendence_Enabled" />
+          </Key>
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Name" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="is_Attendence_Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sibling">
+          <Key>
+            <PropertyRef Name="siblingid" />
+          </Key>
+          <Property Name="Familyid" Type="int" />
+          <Property Name="studentid" Type="int" />
+          <Property Name="siblingid" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Marital_Status" Type="nchar" MaxLength="40" />
+          <Property Name="Profession" Type="nvarchar" MaxLength="50" />
+          <Property Name="DaysWOrdedPerMonth" Type="int" />
+          <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="O365ID" Type="uniqueidentifier" />
+          <Property Name="Birthdate" Type="smalldatetime" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="1" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Student Pic" Type="nvarchar" MaxLength="100" />
+          <Property Name="Blood Group" Type="char" MaxLength="3" />
+          <Property Name="Village" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="int" />
+          <Property Name="DOJ_Yuwa" Type="smalldatetime" />
+          <Property Name="Familyid" Type="int" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="255" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="255" />
+          <Property Name="middlename" Type="nvarchar" MaxLength="255" />
+          <Property Name="is_student" Type="bit" />
+          <Property Name="is_coach" Type="bit" />
+        </EntityType>
+        <EntityType Name="SurveyList">
+          <Key>
+            <PropertyRef Name="Surveyid" />
+          </Key>
+          <Property Name="Surveyid" Type="int" Nullable="false" />
+          <Property Name="Purpose" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Yuwa.dbo.SurveyQuestioniarre' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SurveyQuestioniarre">
+          <Key>
+            <PropertyRef Name="Question" />
+            <PropertyRef Name="Surveyid" />
+          </Key>
+          <Property Name="Questionid" Type="int" />
+          <Property Name="Question" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Surveyid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Yuwa.dbo.TeamCoaches' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TeamCoaches">
+          <Property Name="Teamid" Type="int" />
+          <Property Name="coachid" Type="int" />
+          <Property Name="is_enabled" Type="bit" />
+        </EntityType>-->
+        <EntityType Name="TeamDetails">
+          <Key>
+            <PropertyRef Name="Teamid" />
+          </Key>
+          <Property Name="Teamid" Type="int" Nullable="false" />
+          <Property Name="TeamName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Captain" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="is_enabled" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Yuwa.dbo.TeamMembersDetails' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TeamMembersDetails">
+          <Property Name="Teamid" Type="int" />
+          <Property Name="studentid" Type="int" />
+          <Property Name="DateOfJoining_Team" Type="smalldatetime" />
+          <Property Name="DateOfLeaving_Team" Type="smalldatetime" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" />
+          <Property Name="isCaptain" Type="bit" />
+        </EntityType>-->
+        <EntityType Name="ValueRankingForm">
+          <Key>
+            <PropertyRef Name="entityID" />
+          </Key>
+          <Property Name="Label" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="timestamp" Type="datetime" />
+          <Property Name="PlayerName" Type="nvarchar(max)" />
+          <Property Name="Skill" Type="nvarchar" MaxLength="50" />
+          <Property Name="entityID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yw_features">
+          <Key>
+            <PropertyRef Name="featureid" />
+          </Key>
+          <Property Name="featureid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Feature_Name" Type="varchar" MaxLength="200" />
+          <Property Name="Feature_pic" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Feature_Description" Type="varchar" MaxLength="200" />
+          <Property Name="is_enable" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Attendence_Record_student_details">
+          <End Role="StudentDetails" Type="Self.StudentDetails" Multiplicity="1" />
+          <End Role="AttendanceRecord" Type="Self.AttendanceRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentDetails">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AttendanceRecord">
+              <PropertyRef Name="Studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoachAttendance_CoachDetails">
+          <End Role="CoachDetails" Type="Self.CoachDetails" Multiplicity="1" />
+          <End Role="CoachAttendance" Type="Self.CoachAttendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoachDetails">
+              <PropertyRef Name="Coachid" />
+            </Principal>
+            <Dependent Role="CoachAttendance">
+              <PropertyRef Name="Coachid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sibling_Family_Details">
+          <End Role="FamilyDetails" Type="Self.FamilyDetails" Multiplicity="0..1" />
+          <End Role="Sibling" Type="Self.Sibling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FamilyDetails">
+              <PropertyRef Name="Familyid" />
+            </Principal>
+            <Dependent Role="Sibling">
+              <PropertyRef Name="Familyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sibling_student_details">
+          <End Role="StudentDetails" Type="Self.StudentDetails" Multiplicity="0..1" />
+          <End Role="Sibling" Type="Self.Sibling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentDetails">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sibling">
+              <PropertyRef Name="studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_student_details_Family_Details">
+          <End Role="FamilyDetails" Type="Self.FamilyDetails" Multiplicity="0..1" />
+          <End Role="StudentDetails" Type="Self.StudentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FamilyDetails">
+              <PropertyRef Name="Familyid" />
+            </Principal>
+            <Dependent Role="StudentDetails">
+              <PropertyRef Name="Familyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Survey_Questioniar_Survey_List">
+          <End Role="SurveyList" Type="Self.SurveyList" Multiplicity="1" />
+          <End Role="SurveyQuestioniarre" Type="Self.SurveyQuestioniarre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SurveyList">
+              <PropertyRef Name="Surveyid" />
+            </Principal>
+            <Dependent Role="SurveyQuestioniarre">
+              <PropertyRef Name="Surveyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'Yuwa.dbo.TeamMembersDetails' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_TeamMembersDetails_student_details" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'Yuwa.dbo.TeamMembersDetails' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_TeamMembersDetails_TeamDetails" />-->
+        <EntityContainer Name="YuwaModelStoreContainer">
+          <EntitySet Name="ClassDetails" EntityType="Self.ClassDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoachDetails" EntityType="Self.CoachDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FamilyDetails" EntityType="Self.FamilyDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sibling" EntityType="Self.Sibling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentDetails" EntityType="Self.StudentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyList" EntityType="Self.SurveyList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamDetails" EntityType="Self.TeamDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ValueRankingForm" EntityType="Self.ValueRankingForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yw_features" EntityType="Self.Yw_features" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AttendanceRecord" EntityType="Self.AttendanceRecord" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AttendanceRecord].[Studentid] AS [Studentid], 
+    [AttendanceRecord].[TimeStamp] AS [TimeStamp], 
+    [AttendanceRecord].[Session_Name] AS [Session_Name], 
+    [AttendanceRecord].[Answers] AS [Answers], 
+    [AttendanceRecord].[Surveyid] AS [Surveyid]
+    FROM [dbo].[AttendanceRecord] AS [AttendanceRecord]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CoachAttendance" EntityType="Self.CoachAttendance" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CoachAttendance].[Coachid] AS [Coachid], 
+    [CoachAttendance].[TimeStamp] AS [TimeStamp], 
+    [CoachAttendance].[CoachedTeam] AS [CoachedTeam]
+    FROM [dbo].[CoachAttendance] AS [CoachAttendance]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ListOfHolidays" EntityType="Self.ListOfHolidays" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ListOfHolidays].[Date] AS [Date], 
+    [ListOfHolidays].[Name] AS [Name], 
+    [ListOfHolidays].[is_Attendence_Enabled] AS [is_Attendence_Enabled]
+    FROM [dbo].[ListOfHolidays] AS [ListOfHolidays]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SurveyQuestioniarre" EntityType="Self.SurveyQuestioniarre" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SurveyQuestioniarre].[Questionid] AS [Questionid], 
+    [SurveyQuestioniarre].[Question] AS [Question], 
+    [SurveyQuestioniarre].[Surveyid] AS [Surveyid]
+    FROM [dbo].[SurveyQuestioniarre] AS [SurveyQuestioniarre]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Attendence_Record_student_details" Association="Self.FK_Attendence_Record_student_details">
+            <End Role="StudentDetails" EntitySet="StudentDetails" />
+            <End Role="AttendanceRecord" EntitySet="AttendanceRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoachAttendance_CoachDetails" Association="Self.FK_CoachAttendance_CoachDetails">
+            <End Role="CoachDetails" EntitySet="CoachDetails" />
+            <End Role="CoachAttendance" EntitySet="CoachAttendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sibling_Family_Details" Association="Self.FK_sibling_Family_Details">
+            <End Role="FamilyDetails" EntitySet="FamilyDetails" />
+            <End Role="Sibling" EntitySet="Sibling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sibling_student_details" Association="Self.FK_sibling_student_details">
+            <End Role="StudentDetails" EntitySet="StudentDetails" />
+            <End Role="Sibling" EntitySet="Sibling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_student_details_Family_Details" Association="Self.FK_student_details_Family_Details">
+            <End Role="FamilyDetails" EntitySet="FamilyDetails" />
+            <End Role="StudentDetails" EntitySet="StudentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Survey_Questioniar_Survey_List" Association="Self.FK_Survey_Questioniar_Survey_List">
+            <End Role="SurveyList" EntitySet="SurveyList" />
+            <End Role="SurveyQuestioniarre" EntitySet="SurveyQuestioniarre" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YuwaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ClassDetail">
+          <Key>
+            <PropertyRef Name="Classid" />
+          </Key>
+          <Property Name="Classid" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Classdetails" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CoachDetail">
+          <Key>
+            <PropertyRef Name="Coachid" />
+          </Key>
+          <Property Name="Coachid" Type="Int32" Nullable="false" />
+          <Property Name="CoachName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CoachAttendances" Relationship="Self.FK_CoachAttendance_CoachDetails" FromRole="CoachDetails" ToRole="CoachAttendance" />
+        </EntityType>
+        <EntityType Name="FamilyDetail">
+          <Key>
+            <PropertyRef Name="Familyid" />
+          </Key>
+          <Property Name="Familyid" Type="Int32" Nullable="false" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Guardian_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Father_Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mother_Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="No_of_Working_Days_Father" Type="Int32" />
+          <Property Name="No_Of_Working_Days_Mother" Type="Int32" />
+          <Property Name="Father_Working_Days" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mother_WOrking_Days" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Family_Income" Type="Int32" />
+          <Property Name="Total_Children" Type="Int32" />
+          <NavigationProperty Name="Siblings" Relationship="Self.FK_sibling_Family_Details" FromRole="FamilyDetails" ToRole="Sibling" />
+          <NavigationProperty Name="StudentDetails" Relationship="Self.FK_student_details_Family_Details" FromRole="FamilyDetails" ToRole="StudentDetails" />
+        </EntityType>
+        <EntityType Name="Sibling">
+          <Key>
+            <PropertyRef Name="siblingid" />
+          </Key>
+          <Property Name="Familyid" Type="Int32" />
+          <Property Name="studentid" Type="Int32" />
+          <Property Name="siblingid" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Marital_Status" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DaysWOrdedPerMonth" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FamilyDetail" Relationship="Self.FK_sibling_Family_Details" FromRole="Sibling" ToRole="FamilyDetails" />
+          <NavigationProperty Name="StudentDetail" Relationship="Self.FK_sibling_student_details" FromRole="Sibling" ToRole="StudentDetails" />
+        </EntityType>
+        <EntityType Name="StudentDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="O365ID" Type="Guid" />
+          <Property Name="Birthdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Student_Pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Blood_Group" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Village" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="DOJ_Yuwa" Type="DateTime" Precision="0" />
+          <Property Name="Familyid" Type="Int32" />
+          <Property Name="firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="lastname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="middlename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="is_student" Type="Boolean" />
+          <Property Name="is_coach" Type="Boolean" />
+          <NavigationProperty Name="FamilyDetail" Relationship="Self.FK_student_details_Family_Details" FromRole="StudentDetails" ToRole="FamilyDetails" />
+          <NavigationProperty Name="Siblings" Relationship="Self.FK_sibling_student_details" FromRole="StudentDetails" ToRole="Sibling" />
+          <NavigationProperty Name="AttendanceRecords" Relationship="Self.FK_Attendence_Record_student_details" FromRole="StudentDetails" ToRole="AttendanceRecord" />
+        </EntityType>
+        <EntityType Name="SurveyList">
+          <Key>
+            <PropertyRef Name="Surveyid" />
+          </Key>
+          <Property Name="Surveyid" Type="Int32" Nullable="false" />
+          <Property Name="Purpose" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SurveyQuestioniarres" Relationship="Self.FK_Survey_Questioniar_Survey_List" FromRole="SurveyList" ToRole="SurveyQuestioniarre" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TeamDetail">
+          <Key>
+            <PropertyRef Name="Teamid" />
+          </Key>
+          <Property Name="Teamid" Type="Int32" Nullable="false" />
+          <Property Name="TeamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Captain" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_enabled" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ValueRankingForm">
+          <Key>
+            <PropertyRef Name="entityID" />
+          </Key>
+          <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="timestamp" Type="DateTime" Precision="3" />
+          <Property Name="PlayerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Skill" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="entityID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yw_features">
+          <Key>
+            <PropertyRef Name="featureid" />
+          </Key>
+          <Property Name="featureid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Feature_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Feature_pic" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Feature_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="is_enable" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="AttendanceRecord">
+          <Key>
+            <PropertyRef Name="Studentid" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="Session_Name" />
+          </Key>
+          <Property Name="Studentid" Type="Int32" Nullable="false" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Session_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Answers" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Surveyid" Type="Int32" />
+          <NavigationProperty Name="StudentDetail" Relationship="Self.FK_Attendence_Record_student_details" FromRole="AttendanceRecord" ToRole="StudentDetails" />
+        </EntityType>
+        <EntityType Name="CoachAttendance">
+          <Key>
+            <PropertyRef Name="Coachid" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="CoachedTeam" />
+          </Key>
+          <Property Name="Coachid" Type="Int32" Nullable="false" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CoachedTeam" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CoachDetail" Relationship="Self.FK_CoachAttendance_CoachDetails" FromRole="CoachAttendance" ToRole="CoachDetails" />
+        </EntityType>
+        <EntityType Name="ListOfHoliday">
+          <Key>
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="is_Attendence_Enabled" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Name" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+          <Property Name="is_Attendence_Enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SurveyQuestioniarre">
+          <Key>
+            <PropertyRef Name="Question" />
+            <PropertyRef Name="Surveyid" />
+          </Key>
+          <Property Name="Questionid" Type="Int32" />
+          <Property Name="Question" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surveyid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SurveyList" Relationship="Self.FK_Survey_Questioniar_Survey_List" FromRole="SurveyQuestioniarre" ToRole="SurveyList" />
+        </EntityType>
+        <Association Name="FK_CoachAttendance_CoachDetails">
+          <End Role="CoachDetails" Type="Self.CoachDetail" Multiplicity="1" />
+          <End Role="CoachAttendance" Type="Self.CoachAttendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoachDetails">
+              <PropertyRef Name="Coachid" />
+            </Principal>
+            <Dependent Role="CoachAttendance">
+              <PropertyRef Name="Coachid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sibling_Family_Details">
+          <End Role="FamilyDetails" Type="Self.FamilyDetail" Multiplicity="0..1" />
+          <End Role="Sibling" Type="Self.Sibling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FamilyDetails">
+              <PropertyRef Name="Familyid" />
+            </Principal>
+            <Dependent Role="Sibling">
+              <PropertyRef Name="Familyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_student_details_Family_Details">
+          <End Role="FamilyDetails" Type="Self.FamilyDetail" Multiplicity="0..1" />
+          <End Role="StudentDetails" Type="Self.StudentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FamilyDetails">
+              <PropertyRef Name="Familyid" />
+            </Principal>
+            <Dependent Role="StudentDetails">
+              <PropertyRef Name="Familyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sibling_student_details">
+          <End Role="StudentDetails" Type="Self.StudentDetail" Multiplicity="0..1" />
+          <End Role="Sibling" Type="Self.Sibling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentDetails">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sibling">
+              <PropertyRef Name="studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendence_Record_student_details">
+          <End Role="StudentDetails" Type="Self.StudentDetail" Multiplicity="1" />
+          <End Role="AttendanceRecord" Type="Self.AttendanceRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentDetails">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AttendanceRecord">
+              <PropertyRef Name="Studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Survey_Questioniar_Survey_List">
+          <End Role="SurveyList" Type="Self.SurveyList" Multiplicity="1" />
+          <End Role="SurveyQuestioniarre" Type="Self.SurveyQuestioniarre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SurveyList">
+              <PropertyRef Name="Surveyid" />
+            </Principal>
+            <Dependent Role="SurveyQuestioniarre">
+              <PropertyRef Name="Surveyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YuwaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClassDetails" EntityType="Self.ClassDetail" />
+          <EntitySet Name="CoachDetails" EntityType="Self.CoachDetail" />
+          <EntitySet Name="FamilyDetails" EntityType="Self.FamilyDetail" />
+          <EntitySet Name="Siblings" EntityType="Self.Sibling" />
+          <EntitySet Name="StudentDetails" EntityType="Self.StudentDetail" />
+          <EntitySet Name="SurveyLists" EntityType="Self.SurveyList" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TeamDetails" EntityType="Self.TeamDetail" />
+          <EntitySet Name="ValueRankingForms" EntityType="Self.ValueRankingForm" />
+          <EntitySet Name="Yw_features" EntityType="Self.Yw_features" />
+          <EntitySet Name="AttendanceRecords" EntityType="Self.AttendanceRecord" />
+          <EntitySet Name="CoachAttendances" EntityType="Self.CoachAttendance" />
+          <EntitySet Name="ListOfHolidays" EntityType="Self.ListOfHoliday" />
+          <EntitySet Name="SurveyQuestioniarres" EntityType="Self.SurveyQuestioniarre" />
+          <AssociationSet Name="FK_CoachAttendance_CoachDetails" Association="Self.FK_CoachAttendance_CoachDetails">
+            <End Role="CoachDetails" EntitySet="CoachDetails" />
+            <End Role="CoachAttendance" EntitySet="CoachAttendances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sibling_Family_Details" Association="Self.FK_sibling_Family_Details">
+            <End Role="FamilyDetails" EntitySet="FamilyDetails" />
+            <End Role="Sibling" EntitySet="Siblings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_student_details_Family_Details" Association="Self.FK_student_details_Family_Details">
+            <End Role="FamilyDetails" EntitySet="FamilyDetails" />
+            <End Role="StudentDetails" EntitySet="StudentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sibling_student_details" Association="Self.FK_sibling_student_details">
+            <End Role="StudentDetails" EntitySet="StudentDetails" />
+            <End Role="Sibling" EntitySet="Siblings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendence_Record_student_details" Association="Self.FK_Attendence_Record_student_details">
+            <End Role="StudentDetails" EntitySet="StudentDetails" />
+            <End Role="AttendanceRecord" EntitySet="AttendanceRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Survey_Questioniar_Survey_List" Association="Self.FK_Survey_Questioniar_Survey_List">
+            <End Role="SurveyList" EntitySet="SurveyLists" />
+            <End Role="SurveyQuestioniarre" EntitySet="SurveyQuestioniarres" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YuwaModelStoreContainer" CdmEntityContainer="YuwaEntities">
+          <EntitySetMapping Name="ClassDetails">
+            <EntityTypeMapping TypeName="YuwaModel.ClassDetail">
+              <MappingFragment StoreEntitySet="ClassDetails">
+                <ScalarProperty Name="Classid" ColumnName="Classid" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="Classdetails" ColumnName="Classdetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoachDetails">
+            <EntityTypeMapping TypeName="YuwaModel.CoachDetail">
+              <MappingFragment StoreEntitySet="CoachDetails">
+                <ScalarProperty Name="Coachid" ColumnName="Coachid" />
+                <ScalarProperty Name="CoachName" ColumnName="CoachName" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FamilyDetails">
+            <EntityTypeMapping TypeName="YuwaModel.FamilyDetail">
+              <MappingFragment StoreEntitySet="FamilyDetails">
+                <ScalarProperty Name="Familyid" ColumnName="Familyid" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="Guardian_Name" ColumnName="Guardian_Name" />
+                <ScalarProperty Name="Father_Profession" ColumnName="Father_Profession" />
+                <ScalarProperty Name="Mother_Profession" ColumnName="Mother_Profession" />
+                <ScalarProperty Name="No_of_Working_Days_Father" ColumnName="No_of_Working_Days_Father" />
+                <ScalarProperty Name="No_Of_Working_Days_Mother" ColumnName="No_Of_Working_Days_Mother" />
+                <ScalarProperty Name="Father_Working_Days" ColumnName="Father_Working_Days" />
+                <ScalarProperty Name="Mother_WOrking_Days" ColumnName="Mother_WOrking_Days" />
+                <ScalarProperty Name="Family_Income" ColumnName="Family_Income" />
+                <ScalarProperty Name="Total_Children" ColumnName="Total_Children" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siblings">
+            <EntityTypeMapping TypeName="YuwaModel.Sibling">
+              <MappingFragment StoreEntitySet="Sibling">
+                <ScalarProperty Name="Familyid" ColumnName="Familyid" />
+                <ScalarProperty Name="studentid" ColumnName="studentid" />
+                <ScalarProperty Name="siblingid" ColumnName="siblingid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Marital_Status" ColumnName="Marital_Status" />
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="DaysWOrdedPerMonth" ColumnName="DaysWOrdedPerMonth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentDetails">
+            <EntityTypeMapping TypeName="YuwaModel.StudentDetail">
+              <MappingFragment StoreEntitySet="StudentDetails">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="O365ID" ColumnName="O365ID" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Student_Pic" ColumnName="Student Pic" />
+                <ScalarProperty Name="Blood_Group" ColumnName="Blood Group" />
+                <ScalarProperty Name="Village" ColumnName="Village" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DOJ_Yuwa" ColumnName="DOJ_Yuwa" />
+                <ScalarProperty Name="Familyid" ColumnName="Familyid" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="is_student" ColumnName="is_student" />
+                <ScalarProperty Name="is_coach" ColumnName="is_coach" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurveyLists">
+            <EntityTypeMapping TypeName="YuwaModel.SurveyList">
+              <MappingFragment StoreEntitySet="SurveyList">
+                <ScalarProperty Name="Surveyid" ColumnName="Surveyid" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="YuwaModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamDetails">
+            <EntityTypeMapping TypeName="YuwaModel.TeamDetail">
+              <MappingFragment StoreEntitySet="TeamDetails">
+                <ScalarProperty Name="Teamid" ColumnName="Teamid" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="Captain" ColumnName="Captain" />
+                <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValueRankingForms">
+            <EntityTypeMapping TypeName="YuwaModel.ValueRankingForm">
+              <MappingFragment StoreEntitySet="ValueRankingForm">
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+                <ScalarProperty Name="Skill" ColumnName="Skill" />
+                <ScalarProperty Name="entityID" ColumnName="entityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yw_features">
+            <EntityTypeMapping TypeName="YuwaModel.Yw_features">
+              <MappingFragment StoreEntitySet="Yw_features">
+                <ScalarProperty Name="featureid" ColumnName="featureid" />
+                <ScalarProperty Name="Feature_Name" ColumnName="Feature_Name" />
+                <ScalarProperty Name="Feature_pic" ColumnName="Feature_pic" />
+                <ScalarProperty Name="Feature_Description" ColumnName="Feature_Description" />
+                <ScalarProperty Name="is_enable" ColumnName="is_enable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttendanceRecords">
+            <EntityTypeMapping TypeName="YuwaModel.AttendanceRecord">
+              <MappingFragment StoreEntitySet="AttendanceRecord">
+                <ScalarProperty Name="Studentid" ColumnName="Studentid" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Session_Name" ColumnName="Session_Name" />
+                <ScalarProperty Name="Answers" ColumnName="Answers" />
+                <ScalarProperty Name="Surveyid" ColumnName="Surveyid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoachAttendances">
+            <EntityTypeMapping TypeName="YuwaModel.CoachAttendance">
+              <MappingFragment StoreEntitySet="CoachAttendance">
+                <ScalarProperty Name="Coachid" ColumnName="Coachid" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="CoachedTeam" ColumnName="CoachedTeam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListOfHolidays">
+            <EntityTypeMapping TypeName="YuwaModel.ListOfHoliday">
+              <MappingFragment StoreEntitySet="ListOfHolidays">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="is_Attendence_Enabled" ColumnName="is_Attendence_Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurveyQuestioniarres">
+            <EntityTypeMapping TypeName="YuwaModel.SurveyQuestioniarre">
+              <MappingFragment StoreEntitySet="SurveyQuestioniarre">
+                <ScalarProperty Name="Questionid" ColumnName="Questionid" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Surveyid" ColumnName="Surveyid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
