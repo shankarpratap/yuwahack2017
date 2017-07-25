@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.OData.Builder;
+using System.Web.Http.OData.Extensions;
+using yuwamt;
 
 namespace yuwamt
 {
@@ -19,6 +22,13 @@ namespace yuwamt
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            builder.EntitySet<StudentDetail>("StudentDetails");
+            builder.EntitySet<FamilyDetail>("FamilyDetails");
+            builder.EntitySet<Sibling>("Siblings");
+            builder.EntitySet<AttendanceRecord>("AttendanceRecords");
+            config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
         }
     }
 }
