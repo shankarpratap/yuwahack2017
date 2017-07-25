@@ -1,0 +1,38 @@
+﻿@using YuwaWebApp.Models
+@{
+    ViewBag.Title = "Student List";
+}
+
+@model List<YuwaWebApp.Models.StudentDetail>
+
+    <div id="body">
+        Click on a student for more details. <br />
+        <table id="myTable" class="table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+           {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <style>
+        table {
+            margin-top: 10%;
+            width: 100%;
+        }
+    </style>
