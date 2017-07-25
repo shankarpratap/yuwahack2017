@@ -1,0 +1,1 @@
+Yuwa web app, an MVC app to be deployed in azure.
