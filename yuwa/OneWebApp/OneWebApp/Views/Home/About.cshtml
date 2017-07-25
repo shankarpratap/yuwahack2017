@@ -11,11 +11,30 @@
 <table id="studentTable">
     <tr>
         <th>
-            Student Name
+            Nick Name
+        </th>
+        <th>
+            Full Name
         </th>
         <th>
             Gender
         </th>
+        <th>
+            Age
+        </th>
+        <th>
+            Enrollment Date
+        </th>
+        <th>
+            Village
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Blood Group
+        </th>
+
         <th></th>
     </tr>
 
@@ -23,10 +42,28 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.NickName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOJ_Yuwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Village)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BloodGroup)
             </td>
         </tr>
     }
