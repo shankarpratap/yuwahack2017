@@ -35,12 +35,13 @@ namespace yuwamt.Controllers
         [EnableQuery]
         public IQueryable<StudentDetail> GetStudentDetails()
         {
+            /* Uncomment this to return mock data
             StudentDetail s = new StudentDetail() { id = 1, firstname = "name" };
             List<StudentDetail> l = new List<StudentDetail>();
             l.Add(s);
-            return l.AsQueryable();
+            return l.AsQueryable();*/
 
-            //return db.StudentDetails;
+            return db.StudentDetails;
         }
 
         // GET: odata/StudentDetails(5)
