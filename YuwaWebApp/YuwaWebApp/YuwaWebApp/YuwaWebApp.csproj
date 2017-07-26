@@ -225,6 +225,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\Yuwa - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\YuwaAdminPortal - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\YuwaWebApp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -273,7 +274,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Students.cshtml" />
-    <Content Include="Views\Account\AddStudent.cshtml" />
     <Content Include="Views\Home\AddStudent.cshtml" />
     <Content Include="Views\Home\Coaches.cshtml" />
     <Content Include="Views\Home\Teams.cshtml" />
