@@ -86,7 +86,28 @@ namespace YuwaWebApp.Controllers
 
             return View(coaches);
         }
-        
+
+        public ActionResult Teams()
+        {
+            TargetDB db = new TargetDB("Yuwa", "anly4s85vg.database.windows.net", "Yuwa", "Welcome_1234");
+            List<DataTable> result = db.ExecuteQuery("Select * from TeamDetails");
+            List<TeamDetail> teams = new List<TeamDetail>();
+
+            foreach (DataRow row in result[0].Rows)
+            {
+                teams.Add(new TeamDetail()
+                {
+                    TeamName = GetValue<string>(row, "teamname", ""),
+                    Captain = GetValue<string>(row, "captain", ""),
+                    CoachId = GetValue<int>(row, "coachid", 0)
+                });
+            }
+
+            ViewBag.Message = "teamList";
+
+            return View(teams);
+        }
+
         public ActionResult AddStudent()
         {
 
