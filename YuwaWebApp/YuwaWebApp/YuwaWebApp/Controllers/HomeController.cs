@@ -93,7 +93,19 @@ namespace YuwaWebApp.Controllers
             return View();
         }
 
+
+        public ActionResult AddCoach()
+        {
+
+            return View();
+        }
+
         private void writeToDB(AddStudentViewModel student)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void writeToDB(CoachDetail coach)
         {
             //throw new NotImplementedException();
         }
@@ -108,6 +120,14 @@ namespace YuwaWebApp.Controllers
         public ActionResult SubmitNewStudent(StudentDetail student)
         {
             return RedirectToAction("Students", "Home");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult AddCoach(CoachDetail coach)
+        {
+            writeToDB(coach);
+            return RedirectToAction("Coaches", "Home");
         }
 
     }

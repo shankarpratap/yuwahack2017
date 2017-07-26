@@ -1,0 +1,31 @@
+﻿@using YuwaWebApp.Models
+@model YuwaWebApp.Models.CoachDetail
+
+@{
+    ViewBag.Title = "Add Coach";
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<h2>@ViewBag.Title.</h2>
+    @Scripts.Render("~/bundles/jqueryval")
+
+@using (Html.BeginForm("AddCoach", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(m => m.CoachName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CoachName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Submit" />
+        </div>
+    </div>
+}
+
