@@ -1,0 +1,36 @@
+﻿@using YuwaWebApp.Models
+@{
+    ViewBag.Title = "Coach List";
+}
+
+@model List<YuwaWebApp.Models.CoachDetail>
+
+<div id="body">
+    <table id="myTable" class="table-hover table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Coach Name
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CoachName)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>@Html.ActionLink("AddCoach", "AddCoach", "Home")</div>
+
+<style>
+    table {
+        margin-top: 10%;
+        width: 50%;
+    }
+</style>
