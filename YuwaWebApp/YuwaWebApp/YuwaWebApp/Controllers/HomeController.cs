@@ -116,7 +116,7 @@ namespace YuwaWebApp.Controllers
         private void writeToDB(StudentDetail student)
         {
             TargetDB db = new TargetDB("Yuwa", "anly4s85vg.database.windows.net", "Yuwa", "Welcome_1234");
-            var queryString = string.Format("INSERT INTO StudentDetails VALUES ({0} )", string.Join(",", student.FirstName, student.LastName, student.Gender, student.Birthdate.ToString());
+            var queryString = string.Format("INSERT INTO StudentDetails(FirstName, LastName, Gender) VALUES ('{0}','{1}','{2}')", student.FirstName, student.LastName, student.Gender);
             db.ExecuteNonQuery(queryString);
         }
 
