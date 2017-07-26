@@ -74,14 +74,18 @@ namespace YuwaWebApp.Controllers
             return View();
         }
 
-        private void writeToDB(AddStudentViewModel student)
+        private void writeToDB(StudentDetail student)
         {
-            //throw new NotImplementedException();
+            TargetDB db = new TargetDB("Yuwa", "anly4s85vg.database.windows.net", "Yuwa", "Welcome_1234");
+            db.ExecuteNonQuery("INSERT INTO StudentDetails VALUES (" 
+                + string.Join(",",student.FirstName, student.LastName, student.Gender, student.Birthdate.ToString()) 
+                + ")");
+
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult AddStudent(AddStudentViewModel student)
+        public ActionResult AddStudent(StudentDetail student)
         {
             writeToDB(student);
             return RedirectToAction("Students", "Home");
