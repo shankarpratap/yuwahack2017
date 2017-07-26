@@ -37,4 +37,11 @@ namespace YuwaWebApp.Models
             set { }
         }
     }
+    public class AddStudentViewModel
+    {
+        public string StudentName { get; set; }
+
+        public string Village { get; set; }
+
+    }
 }
