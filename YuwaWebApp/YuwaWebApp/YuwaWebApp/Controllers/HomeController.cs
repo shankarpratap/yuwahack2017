@@ -11,6 +11,8 @@ namespace YuwaWebApp.Controllers
 {
     public class HomeController : Controller
     {
+        private Lazy<TargetDB> targetDB = new Lazy<TargetDB>(new Func<TargetDB>(() => new TargetDB("Yuwa", "anly4s85vg.database.windows.net", "Yuwa", "Welcome_1234")));
+
         public ActionResult Index()
         {
             return View();
@@ -40,8 +42,7 @@ namespace YuwaWebApp.Controllers
 
         public ActionResult Students()
         {
-            TargetDB db = new TargetDB("Yuwa", "anly4s85vg.database.windows.net", "Yuwa", "Welcome_1234");
-            List<DataTable> result = db.ExecuteQuery("Select * from StudentDetails");
+            List<DataTable> result = targetDB.Value.ExecuteQuery("Select * from StudentDetails");
             List<StudentDetail> students = new List<StudentDetail>();
 
             foreach (DataRow row in result[0].Rows)
@@ -70,8 +71,7 @@ namespace YuwaWebApp.Controllers
 
         public ActionResult Coaches()
         {
-            TargetDB db = new TargetDB("Yuwa", "anly4s85vg.database.windows.net", "Yuwa", "Welcome_1234");
-            List<DataTable> result = db.ExecuteQuery("Select * from CoachDetails");
+            List<DataTable> result = targetDB.Value.ExecuteQuery("Select * from CoachDetails");
             List<CoachDetail> coaches = new List<CoachDetail>();
 
             foreach (DataRow row in result[0].Rows)
@@ -86,7 +86,27 @@ namespace YuwaWebApp.Controllers
 
             return View(coaches);
         }
-        
+
+        public ActionResult Teams()
+        {
+            List<DataTable> result = targetDB.Value.ExecuteQuery("Select * from TeamDetails");
+            List<TeamDetail> teams = new List<TeamDetail>();
+
+            foreach (DataRow row in result[0].Rows)
+            {
+                teams.Add(new TeamDetail()
+                {
+                    TeamName = GetValue<string>(row, "teamname", ""),
+                    Captain = GetValue<string>(row, "captain", ""),
+                    CoachId = GetValue<int>(row, "coachid", 0)
+                });
+            }
+
+            ViewBag.Message = "teamList";
+
+            return View(teams);
+        }
+
         public ActionResult AddStudent()
         {
 
@@ -107,7 +127,8 @@ namespace YuwaWebApp.Controllers
 
         private void writeToDB(CoachDetail coach)
         {
-            //throw new NotImplementedException();
+            string insertQry = string.Format("INSERT INTO CoachDetails(CoachName, Comments) VALUES('{0}', '{1}')", coach.CoachName, "Comments about " + coach.CoachName);
+            targetDB.Value.ExecuteNonQuery(insertQry);  
         }
 
         [HttpPost]
