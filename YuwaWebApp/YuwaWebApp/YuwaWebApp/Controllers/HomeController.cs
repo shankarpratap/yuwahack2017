@@ -67,5 +67,29 @@ namespace YuwaWebApp.Controllers
 
             return View(students);
         }
+        
+        public ActionResult AddStudent()
+        {
+
+            return View();
+        }
+
+        private void writeToDB(AddStudentViewModel student)
+        {
+            //throw new NotImplementedException();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult AddStudent(AddStudentViewModel student)
+        {
+            writeToDB(student);
+            return RedirectToAction("Students", "Home");
+        }
+        public ActionResult SubmitNewStudent(StudentDetail student)
+        {
+            return RedirectToAction("Students", "Home");
+        }
+
     }
 }
