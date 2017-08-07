@@ -89,6 +89,7 @@ namespace YuwaWebApp.Controllers
 
         public ActionResult Teams()
         {
+            /*
             List<DataTable> result = targetDB.Value.ExecuteQuery("Select * from TeamDetails");
             List<TeamDetail> teams = new List<TeamDetail>();
 
@@ -98,13 +99,41 @@ namespace YuwaWebApp.Controllers
                 {
                     TeamName = GetValue<string>(row, "teamname", ""),
                     Captain = GetValue<string>(row, "captain", ""),
-                    CoachId = GetValue<int>(row, "coachid", 0)
+                    Coach = new CoachDetail() { CoachName = GetValue<int>(row, "coachid", 0).ToString() }
                 });
             }
 
             ViewBag.Message = "teamList";
+            */
+            TeamConfigurations tc = new TeamConfigurations();
+            List<StudentDetail> students = new List<StudentDetail>();
 
-            return View(teams);
+            List<DataTable> result = targetDB.Value.ExecuteQuery("Select * from StudentDetails");
+            foreach (DataRow row in result[0].Rows)
+            {
+                students.Add(new StudentDetail()
+                {
+                    FirstName = GetValue<string>(row, "firstname", ""),
+                    LastName = GetValue<string>(row, "lastname", ""),
+                    Gender = GetValue<string>(row, "Gender", ""),
+                    NickName = GetValue<string>(row, "nickname", ""),
+                    Birthdate = (DateTime)Convert.ChangeType(row["Birthdate"], typeof(DateTime)),
+                    DOJ_Yuwa = GetValue<DateTime>(row, "DOJ_Yuwa", DateTime.MaxValue),
+                    Address = GetValue<string>(row, "Address", ""),
+                    BloodGroup = GetValue<string>(row, "Blood Group", ""),
+                    Village = GetValue<string>(row, "Village", ""),
+                    Phone = GetValue<string>(row, "Phone", ""),
+                    IsStudent = GetValue<bool>(row, "is_student", true),
+                    IsCoach = GetValue<bool>(row, "is_coach", false),
+                });
+            }
+            tc.UnAllocatedSudents = students;
+
+            tc.Teams = new List<TeamDetail>() { new TeamDetail() { TeamName = "1", Students = students },
+                                                new TeamDetail() { TeamName = "2", Students = students },
+                                                new TeamDetail() { TeamName = "3", Students = students }};
+
+            return View(tc);
         }
 
         public ActionResult AddStudent()

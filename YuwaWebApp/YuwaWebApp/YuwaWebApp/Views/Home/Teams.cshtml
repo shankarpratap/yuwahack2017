@@ -3,8 +3,53 @@
     ViewBag.Title = "Coach List";
 }
 
-@model List<YuwaWebApp.Models.TeamDetail>
+@model TeamConfigurations
 
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <!-- Content -->
+        </div>
+        <div class="col-2">
+            <!-- Content -->
+        </div>
+        <div class="col-8">
+            <!-- Content -->
+        </div>
+    </div>
+</div>
+
+@*
+<div class="container">
+    <div class="row">
+        <div id ="students" class="col-2">
+            <ul class="list-group">
+                @foreach (StudentDetail s in Model.UnAllocatedSudents)
+                {
+                    <li class="list-group-item"> @s.FirstName </li>
+                }
+            </ul>
+        </div>
+        <div id="teams" class="col-8">
+
+            @foreach (TeamDetail t in Model.Teams)
+            {
+                <div class="list-group-item">
+                    <p> @t.TeamName </p>
+                    <ul class="list-group">
+                        @foreach (StudentDetail ts in t.Students)
+                        {
+                            <li class="list-group-item"> @ts.FirstName </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+*@
+
+@*
 <div id="body">
     <table id="myTable" class="table-hover table-striped">
         <thead>
@@ -27,14 +72,14 @@
                         @Html.DisplayFor(modelItem => item.Captain)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CoachId)
+                        @Html.DisplayFor(modelItem => item.Coach.CoachName)
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-
+*@
 <style>
     table {
         margin-top: 10%;

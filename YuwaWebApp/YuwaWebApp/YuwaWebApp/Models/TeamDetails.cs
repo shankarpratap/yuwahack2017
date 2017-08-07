@@ -9,7 +9,7 @@ namespace YuwaWebApp.Models
     {
         public string TeamName { get; set; }
         public string Captain { get; set; }
-        public int CoachId { get; set; }
-
+        public CoachDetail Coach { get; set; }
+        public List<StudentDetail> Students { get; set; }
     }
 }
