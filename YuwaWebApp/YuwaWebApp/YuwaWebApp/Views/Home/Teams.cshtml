@@ -5,84 +5,78 @@
 
 @model TeamConfigurations
 
-<div class="container">
-    <div class="row">
-        <div class="col-2">
-            <!-- Content -->
-        </div>
-        <div class="col-2">
-            <!-- Content -->
-        </div>
-        <div class="col-8">
-            <!-- Content -->
-        </div>
-    </div>
-</div>
-
-@*
-<div class="container">
-    <div class="row">
-        <div id ="students" class="col-2">
-            <ul class="list-group">
-                @foreach (StudentDetail s in Model.UnAllocatedSudents)
-                {
-                    <li class="list-group-item"> @s.FirstName </li>
-                }
-            </ul>
-        </div>
-        <div id="teams" class="col-8">
-
-            @foreach (TeamDetail t in Model.Teams)
-            {
-                <div class="list-group-item">
-                    <p> @t.TeamName </p>
-                    <ul class="list-group">
-                        @foreach (StudentDetail ts in t.Students)
-                        {
-                            <li class="list-group-item"> @ts.FirstName </li>
-                        }
-                    </ul>
-                </div>
-            }
-        </div>
-    </div>
-</div>
-*@
-
-@*
 <div id="body">
-    <table id="myTable" class="table-hover table-striped">
-        <thead>
-            <tr>
-                <th>
-                    Team Name
-                </th>
-                <th>Captain</th>
-                <th>Coach Id</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TeamName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Captain)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Coach.CoachName)
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div id="students" class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        Students
+                        <span class="badge"> @Model.UnAllocatedSudents.Count </span>
+                    </li>
+                    @foreach (StudentDetail s in Model.UnAllocatedSudents)
+                    {
+                        <li class="list-group-item"> @s.FirstName </li>
+                    }
+                </ul>
+            </div>
+            <div id="teams" class="col-md-9">
+                <div class="row">
+                    @foreach (TeamDetail t in Model.Teams)
+                    {
+                        <div class="col-md-3">
+                            <ul class="list-group">
+                                <li class="list-group-item active">
+                                    @t.TeamName
+                                    <span class="badge"> @t.Students.Count </span>
+                                </li>
+                                @foreach (StudentDetail ts in t.Students)
+                                {
+                                    <li class="list-group-item"> @ts.FirstName </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-*@
-<style>
-    table {
-        margin-top: 10%;
-        width: 50%;
-    }
-</style>
+
+    @*
+        <div id="body">
+            <table id="myTable" class="table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Team Name
+                        </th>
+                        <th>Captain</th>
+                        <th>Coach Id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TeamName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Captain)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Coach.CoachName)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    *@
+    <style>
+        table {
+            margin-top: 10%;
+            width: 50%;
+        }
+    </style>

@@ -107,25 +107,9 @@ namespace YuwaWebApp.Controllers
             */
             TeamConfigurations tc = new TeamConfigurations();
             List<StudentDetail> students = new List<StudentDetail>();
-
-            List<DataTable> result = targetDB.Value.ExecuteQuery("Select * from StudentDetails");
-            foreach (DataRow row in result[0].Rows)
+            for (int i = 1; i <= 5; i++)
             {
-                students.Add(new StudentDetail()
-                {
-                    FirstName = GetValue<string>(row, "firstname", ""),
-                    LastName = GetValue<string>(row, "lastname", ""),
-                    Gender = GetValue<string>(row, "Gender", ""),
-                    NickName = GetValue<string>(row, "nickname", ""),
-                    Birthdate = (DateTime)Convert.ChangeType(row["Birthdate"], typeof(DateTime)),
-                    DOJ_Yuwa = GetValue<DateTime>(row, "DOJ_Yuwa", DateTime.MaxValue),
-                    Address = GetValue<string>(row, "Address", ""),
-                    BloodGroup = GetValue<string>(row, "Blood Group", ""),
-                    Village = GetValue<string>(row, "Village", ""),
-                    Phone = GetValue<string>(row, "Phone", ""),
-                    IsStudent = GetValue<bool>(row, "is_student", true),
-                    IsCoach = GetValue<bool>(row, "is_coach", false),
-                });
+                students.Add(new StudentDetail() { FirstName = i.ToString() });
             }
             tc.UnAllocatedSudents = students;
 
