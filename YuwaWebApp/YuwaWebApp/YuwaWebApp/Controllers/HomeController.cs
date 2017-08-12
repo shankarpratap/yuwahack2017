@@ -107,15 +107,16 @@ namespace YuwaWebApp.Controllers
             */
             TeamConfigurations tc = new TeamConfigurations();
             List<StudentDetail> students = new List<StudentDetail>();
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 25; i++)
             {
-                students.Add(new StudentDetail() { FirstName = i.ToString() });
+                students.Add(new StudentDetail() { FirstName = i.ToString(), Id = i });
             }
-            tc.UnAllocatedSudents = students;
+            tc.AllStudents = students;
+            tc.UnAllocatedSudents = students.FindAll(s => s.Id <= 10);
 
-            tc.Teams = new List<TeamDetail>() { new TeamDetail() { TeamName = "1", Students = students },
-                                                new TeamDetail() { TeamName = "2", Students = students },
-                                                new TeamDetail() { TeamName = "3", Students = students }};
+            tc.Teams = new List<TeamDetail>() { new TeamDetail() { TeamName = "Team-1", Students = students.FindAll(s => s.Id > 10 && s.Id <= 15) },
+                                                new TeamDetail() { TeamName = "Team-2", Students = students.FindAll(s => s.Id > 15 && s.Id <= 20) },
+                                                new TeamDetail() { TeamName = "Team-3", Students = students.FindAll(s => s.Id > 20 && s.Id <= 25) }};
 
             return View(tc);
         }
